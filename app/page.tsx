@@ -437,6 +437,43 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="px-5 py-24 md:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div>
+              <p className="section-kicker">Promo</p>
+              <h2 className="section-title">A direct look at the kind of digital presence you are building.</h2>
+              <p className="mt-6 max-w-xl text-lg leading-8 text-white/64">
+                This promotional reel gives the site a stronger first impression and shows your work in motion instead of relying
+                only on static screens.
+              </p>
+            </div>
+
+            <motion.div
+              initial={false}
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+              whileHover={{ y: -4 }}
+              className="surface-card overflow-hidden rounded-[2.2rem] p-4"
+            >
+              <div className="overflow-hidden rounded-[1.8rem] border border-white/10 bg-black/30 shadow-panel">
+                <video
+                  className="aspect-video w-full object-cover"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  controls
+                  preload="metadata"
+                >
+                  <source src="/showcase/promotional-video.mp4" type="video/mp4" />
+                </video>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       <section id="services" className="px-5 py-24 md:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="max-w-3xl">
