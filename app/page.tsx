@@ -285,6 +285,24 @@ function ProductFrame() {
 export default function Home() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
+  function openMailFallback(formData: FormData) {
+    const name = String(formData.get("name") ?? "");
+    const email = String(formData.get("email") ?? "");
+    const inquirySubject = String(formData.get("inquirySubject") ?? "New project inquiry");
+    const projectType = String(formData.get("projectType") ?? "");
+    const message = String(formData.get("message") ?? "");
+
+    const body = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      `Project Type: ${projectType}`,
+      "",
+      message,
+    ].join("\n");
+
+    window.location.href = `mailto:nexellabs.business@outlook.com?subject=${encodeURIComponent(inquirySubject)}&body=${encodeURIComponent(body)}`;
+  }
+
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
@@ -297,6 +315,16 @@ export default function Home() {
     setFormStatus("submitting");
 
     try {
+      const isNetlifyHost =
+        typeof window !== "undefined" &&
+        (window.location.hostname.endsWith(".netlify.app") || window.location.hostname.endsWith(".netlify.live"));
+
+      if (!isNetlifyHost) {
+        openMailFallback(formData);
+        setFormStatus("idle");
+        return;
+      }
+
       const response = await fetch("/", {
         method: "POST",
         headers: {
@@ -312,6 +340,7 @@ export default function Home() {
       form.reset();
       setFormStatus("success");
     } catch {
+      openMailFallback(formData);
       setFormStatus("error");
     }
   }
@@ -691,7 +720,7 @@ export default function Home() {
                   )}
 
                   {formStatus === "error" && (
-                    <p className="text-sm text-red-300">Submission failed. Please try again.</p>
+                    <p className="text-sm text-red-300">Direct submission failed, so an email draft was opened instead.</p>
                   )}
                 </form>
               </div>
