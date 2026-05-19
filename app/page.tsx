@@ -559,11 +559,22 @@ export default function Home() {
 
               <div className="surface-panel rounded-[2rem] p-6">
                 <form
-                  action="mailto:nexellabs.business@outlook.com"
-                  method="post"
-                  encType="text/plain"
+                  name="project-inquiry"
+                  method="POST"
+                  action="#contact"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
                   className="grid gap-4"
                 >
+                  <input type="hidden" name="form-name" value="project-inquiry" />
+                  <input type="hidden" name="subject" value="New website inquiry" />
+                  <p className="hidden">
+                    <label>
+                      Don&apos;t fill this out if you&apos;re human:
+                      <input name="bot-field" />
+                    </label>
+                  </p>
+
                   <label className="grid gap-2 text-sm text-white/70">
                     Your name
                     <input
@@ -580,6 +591,7 @@ export default function Home() {
                       type="email"
                       name="email"
                       placeholder="you@example.com"
+                      required
                       className="rounded-[1.2rem] border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#1dcdfe]"
                     />
                   </label>
@@ -588,7 +600,7 @@ export default function Home() {
                     Subject
                     <input
                       type="text"
-                      name="subject"
+                      name="inquirySubject"
                       placeholder="New project inquiry"
                       className="rounded-[1.2rem] border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#ff9c52]"
                     />
@@ -599,6 +611,7 @@ export default function Home() {
                     <select
                       name="projectType"
                       defaultValue=""
+                      required
                       className="rounded-[1.2rem] border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition focus:border-[#ff9c52]"
                     >
                       <option value="" disabled>
@@ -617,6 +630,7 @@ export default function Home() {
                     <textarea
                       name="message"
                       rows={6}
+                      required
                       className="resize-none rounded-[1.2rem] border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition placeholder:text-white/30 focus:border-[#1dcdfe]"
                     />
                   </label>
