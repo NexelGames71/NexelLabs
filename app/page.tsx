@@ -1,6 +1,8 @@
- "use client";
+"use client";
 
 import { motion } from "framer-motion";
+import type { FormEvent } from "react";
+import { useState } from "react";
 import {
   ArrowRight,
   Blocks,
@@ -281,6 +283,39 @@ function ProductFrame() {
 }
 
 export default function Home() {
+  const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = new URLSearchParams();
+    formData.forEach((value, key) => {
+      payload.append(key, String(value));
+    });
+    setFormStatus("submitting");
+
+    try {
+      const response = await fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+        body: payload.toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      form.reset();
+      setFormStatus("success");
+    } catch {
+      setFormStatus("error");
+    }
+  }
+
   return (
     <main className="min-h-screen overflow-hidden bg-site text-stone-100">
       <div className="hero-noise pointer-events-none absolute inset-0 opacity-40" />
@@ -561,13 +596,12 @@ export default function Home() {
                 <form
                   name="project-inquiry"
                   method="POST"
-                  action="#contact"
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
                   className="grid gap-4"
                 >
                   <input type="hidden" name="form-name" value="project-inquiry" />
-                  <input type="hidden" name="subject" value="New website inquiry" />
                   <p className="hidden">
                     <label>
                       Don&apos;t fill this out if you&apos;re human:
@@ -645,11 +679,20 @@ export default function Home() {
 
                   <button
                     type="submit"
+                    disabled={formStatus === "submitting"}
                     className="inline-flex items-center justify-center gap-2 rounded-full bg-[linear-gradient(135deg,#ff7a1a,#ffb36b)] px-6 py-4 font-semibold text-black transition hover:brightness-105"
                   >
-                    Book a project
+                    {formStatus === "submitting" ? "Sending..." : "Book a project"}
                     <ArrowRight className="h-5 w-5" />
                   </button>
+
+                  {formStatus === "success" && (
+                    <p className="text-sm text-emerald-300">Your inquiry was sent successfully.</p>
+                  )}
+
+                  {formStatus === "error" && (
+                    <p className="text-sm text-red-300">Submission failed. Please try again.</p>
+                  )}
                 </form>
               </div>
             </div>
