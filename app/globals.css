@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --bg: #090d12;
+  --panel: rgba(255, 255, 255, 0.045);
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #f6f0e8;
+  --muted: rgba(246, 240, 232, 0.64);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top, rgba(255, 122, 26, 0.16), transparent 24%),
+    radial-gradient(circle at 85% 18%, rgba(29, 205, 254, 0.14), transparent 22%),
+    linear-gradient(180deg, #0b0f14 0%, #090d12 42%, #080b10 100%);
+  color: var(--text);
+  font-family: var(--font-body), sans-serif;
+}
+
+::selection {
+  background: rgba(255, 122, 26, 0.38);
+  color: #fff;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.font-display {
+  font-family: var(--font-display), sans-serif;
+}
+
+.bg-site {
+  background: transparent;
+}
+
+.surface-panel {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.03));
+  backdrop-filter: blur(22px);
+}
+
+.surface-card {
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.028));
+  backdrop-filter: blur(18px);
+}
+
+.section-kicker {
+  margin: 0 0 1rem;
+  font-family: var(--font-display), sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #ff9c52;
+}
+
+.section-title {
+  max-width: 16ch;
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+  color: #fff;
+}
+
+.hero-noise {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at center, black 36%, transparent 88%);
+}
+
+.shadow-panel {
+  box-shadow:
+    0 40px 100px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.03);
+}
+
+.tilt-card {
+  transform-origin: center;
+  will-change: transform;
+}
+
+.float-slow {
+  animation: driftY 9s ease-in-out infinite;
+}
+
+.float-delay {
+  animation: driftY 11s ease-in-out infinite reverse;
+}
+
+.float-slower {
+  animation: driftY 13s ease-in-out infinite;
+}
+
+@keyframes driftY {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+@media (max-width: 640px) {
+  .section-title {
+    max-width: none;
+  }
+}
