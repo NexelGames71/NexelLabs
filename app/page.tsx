@@ -352,9 +352,14 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <nav className="surface-panel sticky top-5 z-30 flex items-center justify-between rounded-full px-4 py-3 md:px-6">
             <a href="#top" className="flex items-center gap-3">
-              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[linear-gradient(135deg,#ff7a1a,#1dcdfe)] font-display text-lg font-bold text-black">
-                N
-              </span>
+              <Image
+                src="/nexel-labs-icon.svg"
+                alt="Nexel Labs"
+                width={44}
+                height={44}
+                className="h-11 w-11 rounded-2xl object-cover"
+                priority
+              />
               <div>
                 <div className="font-display text-sm uppercase tracking-[0.3em] text-white/50">Nexel Labs</div>
                 <div className="text-sm text-white/80">Web, app and software development</div>
@@ -770,9 +775,13 @@ export default function Home() {
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-[1fr_auto] md:items-end">
           <div>
             <div className="flex items-center gap-3">
-              <span className="grid h-11 w-11 place-items-center rounded-2xl bg-[linear-gradient(135deg,#ff7a1a,#1dcdfe)] font-display text-lg font-bold text-black">
-                N
-              </span>
+              <Image
+                src="/nexel-labs-icon.svg"
+                alt="Nexel Labs"
+                width={44}
+                height={44}
+                className="h-11 w-11 rounded-2xl object-cover"
+              />
               <div>
                 <p className="font-display text-lg font-semibold text-white">Nexel Labs</p>
                 <p className="text-sm text-white/56">Web, app and software development</p>

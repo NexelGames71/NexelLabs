@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   title: "Nexel Labs | Modern Websites, Apps and Software",
   description:
     "Nexel Labs designs and develops modern websites, apps, and custom software systems with a product-focused approach.",
+  icons: {
+    icon: "/nexel-labs-icon.svg",
+    shortcut: "/nexel-labs-icon.svg",
+    apple: "/nexel-labs-icon.svg",
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

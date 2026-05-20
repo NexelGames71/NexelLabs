@@ -1,0 +1,44 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="512" height="512" rx="96" fill="#101315"/>
+  <rect width="512" height="512" rx="96" fill="url(#bg)" opacity="0.65"/>
+  <g filter="url(#blueGlow)">
+    <path d="M132 155H198L309 267V361H264L180 276V361H132V155Z" fill="url(#nGrad)"/>
+    <path d="M177 155L309 287V220L244 155H177Z" fill="#10D7FF" fill-opacity="0.8"/>
+    <path d="M132 155H198L309 267V361H264L180 276V361H132V155Z" stroke="#B8F4FF" stroke-width="4"/>
+  </g>
+  <g filter="url(#whiteGlow)">
+    <path d="M312 207L356 163V339H426L383 383H312V207Z" fill="url(#lGrad)"/>
+    <path d="M312 207L356 163V339H426L383 383H312V207Z" stroke="white" stroke-opacity="0.9" stroke-width="4"/>
+  </g>
+  <defs>
+    <radialGradient id="bg" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(184 236) rotate(32) scale(270 220)">
+      <stop stop-color="#003B65"/>
+      <stop offset="0.45" stop-color="#11161A"/>
+      <stop offset="1" stop-color="#1E1E1E"/>
+    </radialGradient>
+    <linearGradient id="nGrad" x1="125" y1="145" x2="305" y2="376" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#18E4FF"/>
+      <stop offset="0.52" stop-color="#0057FF"/>
+      <stop offset="1" stop-color="#061E9F"/>
+    </linearGradient>
+    <linearGradient id="lGrad" x1="350" y1="159" x2="376" y2="383" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="0.48" stop-color="#CDD2D6"/>
+      <stop offset="1" stop-color="#5E666E"/>
+    </linearGradient>
+    <filter id="blueGlow" x="78" y="101" width="285" height="314" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="BackgroundImageFix" stdDeviation="22"/>
+      <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="24" flood-color="#00D7FF" flood-opacity="0.9"/>
+      <feDropShadow dx="0" dy="18" stdDeviation="26" flood-color="#003BFF" flood-opacity="0.7"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_backgroundBlur" result="shape"/>
+    </filter>
+    <filter id="whiteGlow" x="258" y="109" width="222" height="328" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="24" flood-color="#FFFFFF" flood-opacity="0.85"/>
+      <feDropShadow dx="0" dy="16" stdDeviation="28" flood-color="#D8E2EA" flood-opacity="0.5"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
+    </filter>
+  </defs>
+</svg>
