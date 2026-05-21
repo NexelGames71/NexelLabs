@@ -285,52 +285,20 @@ function ProductFrame() {
 export default function Home() {
   const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
-  function openMailFallback(formData: FormData) {
-    const name = String(formData.get("name") ?? "");
-    const email = String(formData.get("email") ?? "");
-    const inquirySubject = String(formData.get("inquirySubject") ?? "New project inquiry");
-    const projectType = String(formData.get("projectType") ?? "");
-    const message = String(formData.get("message") ?? "");
-
-    const body = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      `Project Type: ${projectType}`,
-      "",
-      message,
-    ].join("\n");
-
-    window.location.href = `mailto:nexellabs.business@outlook.com?subject=${encodeURIComponent(inquirySubject)}&body=${encodeURIComponent(body)}`;
-  }
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const payload = new URLSearchParams();
-    formData.forEach((value, key) => {
-      payload.append(key, String(value));
-    });
     setFormStatus("submitting");
 
     try {
-      const isNetlifyHost =
-        typeof window !== "undefined" &&
-        (window.location.hostname.endsWith(".netlify.app") || window.location.hostname.endsWith(".netlify.live"));
-
-      if (!isNetlifyHost) {
-        openMailFallback(formData);
-        setFormStatus("idle");
-        return;
-      }
-
-      const response = await fetch("/", {
+      const response = await fetch("https://formspree.io/f/xredqrrj", {
         method: "POST",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
+          Accept: "application/json",
         },
-        body: payload.toString(),
+        body: formData,
       });
 
       if (!response.ok) {
@@ -340,7 +308,6 @@ export default function Home() {
       form.reset();
       setFormStatus("success");
     } catch {
-      openMailFallback(formData);
       setFormStatus("error");
     }
   }
@@ -667,19 +634,10 @@ export default function Home() {
                 <form
                   name="project-inquiry"
                   method="POST"
-                  data-netlify="true"
-                  data-netlify-honeypot="bot-field"
+                  action="https://formspree.io/f/xredqrrj"
                   onSubmit={handleSubmit}
                   className="grid gap-4"
                 >
-                  <input type="hidden" name="form-name" value="project-inquiry" />
-                  <p className="hidden">
-                    <label>
-                      Don&apos;t fill this out if you&apos;re human:
-                      <input name="bot-field" />
-                    </label>
-                  </p>
-
                   <label className="grid gap-2 text-sm text-white/70">
                     Your name
                     <input
@@ -762,7 +720,7 @@ export default function Home() {
                   )}
 
                   {formStatus === "error" && (
-                    <p className="text-sm text-red-300">Direct submission failed, so an email draft was opened instead.</p>
+                    <p className="text-sm text-red-300">Submission failed. Please try again or email us directly.</p>
                   )}
                 </form>
               </div>
