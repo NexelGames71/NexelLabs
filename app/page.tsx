@@ -701,9 +701,16 @@ export default function Home() {
                   <div className="rounded-[1.5rem] border border-white/10 bg-black/20 p-5">
                     <div className="flex items-center gap-3">
                       <MessageSquareMore className="h-5 w-5 text-[#ff9c52]" />
-                      <p className="font-medium text-white">Direct email</p>
+                      <p className="font-medium text-white">Direct contact</p>
                     </div>
-                    <p className="mt-3 break-all text-sm leading-7 text-white/58">nexellabs.business@outlook.com</p>
+                    <div className="mt-3 grid gap-1 text-sm leading-7 text-white/58">
+                      <a href="mailto:nexellabs.business@outlook.com" className="break-all transition hover:text-white">
+                        nexellabs.business@outlook.com
+                      </a>
+                      <a href="tel:+18764944489" className="transition hover:text-white">
+                        +1 (876) 494-4489
+                      </a>
+                    </div>
                   </div>
 
                   <button
@@ -759,6 +766,9 @@ export default function Home() {
             </div>
             <a href="mailto:nexellabs.business@outlook.com" className="transition hover:text-white">
               nexellabs.business@outlook.com
+            </a>
+            <a href="tel:+18764944489" className="transition hover:text-white">
+              +1 (876) 494-4489
             </a>
             <p className="text-white/38">© 2026 Nexel Labs. All rights reserved.</p>
           </div>
