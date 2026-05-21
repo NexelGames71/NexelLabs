@@ -760,7 +760,7 @@ export default function Home() {
             <a href="mailto:nexellabs.business@outlook.com" className="transition hover:text-white">
               nexellabs.business@outlook.com
             </a>
-            <p className="text-white/38">© 2026 Nexel Labs</p>
+            <p className="text-white/38">© 2026 Nexel Labs. All rights reserved.</p>
           </div>
         </div>
       </footer>
